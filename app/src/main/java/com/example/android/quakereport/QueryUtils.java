@@ -61,15 +61,12 @@ public final class QueryUtils {
                 double magnitude = properties.getDouble("mag");
                 String location = properties.getString("place");
                 long time = properties.getLong("time");
+                // Extract the value for the key called "url"
+                String url = properties.getString("url");
 
-                //transfer time in ms to date format.
-                long timeInMilliseconds = time;
-                Date dateObject = new Date(timeInMilliseconds);
-
-                SimpleDateFormat dateFormatter = new SimpleDateFormat("MMM DD, yyyy");
-                String dateToDisplay = dateFormatter.format(dateObject);
-
-                Earthquake earthquake = new Earthquake(magnitude, location, timeInMilliseconds);
+                // Create a new {@link Earthquake} object with the magnitude, location, time,
+                // and url from the JSON response.
+                Earthquake earthquake = new Earthquake(magnitude, location, time, url);
                 earthquakes.add(earthquake);
             }
 
